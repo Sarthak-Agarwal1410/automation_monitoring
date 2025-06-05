@@ -1,0 +1,64 @@
+Based on real-world DevOps priorities and best practices, here's how I would rank the options for each question
+
+Q1. You're tasked with onboarding a new microservice to production in Kubernetes. What do you automate first?
+1	Writing Helm charts or Kustomize templates for Kubernetes manifests – Core to getting the app into Kubernetes.
+2 Writing a CI/CD pipeline to deploy new images to Kubernetes – Enables smooth deployment post-template setup.
+3	Setting up monitoring and alerting with Prometheus + Grafana – Essential for production-readiness.
+4	Creating GitHub actions to run tests and code quality checks – Improves quality, but depends on having the pipeline ready.
+5	Documenting the deployment steps in Confluence or a runbook – Important for transparency, but lower immediate priority.
+
+Reasoning: Define infra first, then enable deployment, quality checks, observability, and finally docs.
+
+Q2. Which tasks should be most automated in a high-scale environment?
+1	CI/CD deployments (build → test → release) – Frequent deployments demand automation.
+2	Instance scaling and load balancing – Critical to handle unpredictable load.
+3	Security patching and base image updates – Vital for security, but typically scheduled.
+4	Incident response and alert escalation – Partially automatable, but usually involves human judgment.
+5	Log rotation and archival – Important, but can be handled periodically by standard tools.
+
+Reasoning: CI/CD and security are top priorities at scale, followed by infrastructure elasticity, response flow, and log hygiene.
+
+Q3. You join a team where deployments are manual and slow. What would you implement first?
+1	Jenkins/GitLab CI pipelines for automated deployments – Immediate boost to speed, repeatability, and confidence in shipping code.
+2	Monitoring & alerting to track post-deployment issues – Ensures visibility into problems post-deployment.
+3	Centralized logging with Elasticsearch or Loki – Helps investigate and debug issues efficiently.
+4	Terraform or CloudFormation for infra provisioning – Valuable but not the most urgent for improving deployment speed.
+5	Canary deployment strategy with automated rollback – More advanced, best implemented once basics are in place.
+
+Reasoning: Start with automating delivery, then infra provisioning, then observability layers, and finally progressive delivery.
+
+Q4. During an incident, which of the following do you investigate first?
+1	Recent code or config changes – Most common root cause; always start here.
+2 Alert and log timestamps – Helps correlate when the issue started.
+3	Kubernetes pod restarts or crash loops – Indicates possible failure points at the container level.
+4	CPU, memory, and disk metrics – Important for checking resource exhaustion.
+5	Network traffic or service dependencies – Complex and typically checked later after ruling out app-level causes.
+
+Reasoning: Rollback-triggering changes are most common root causes. Use logs and container signals to diagnose further.
+
+Q5. Your organization is moving from VMs to containers. What order would you follow for infrastructure modernization?
+1 Implement IaC with Terraform to standardize infrastructure
+2 Migrate apps to Docker and container registries
+3 Build CI pipelines to push container images
+4 Deploy apps to Kubernetes using Helm
+5 Set up observability stack (Prometheus, Grafana, Loki)
+
+Reasoning: Build solid infra foundations first, then migrate and build automation, followed by deployment and observability.
+
+Q6. You’re asked to reduce manual work in the release process. What would you automate in this order?
+1 Build and test on code push
+2 Deploy to staging with rollback support
+3 Deploy to production with health checks
+4 Change management approval or gate
+5 Update monitoring dashboards
+
+Reasoning: Automate the release path before involving human approvals or post-release observability tweaks.
+
+Q7. Which of the following signals most likely indicates poor automation maturity in an organization? (Rank from most to least concerning)
+1 Infra changes made without PRs or peer review
+2 SREs manually provisioning infrastructure in the AWS Console
+3 Manual rollback steps during release
+4 No alerting for failed deployments
+5 Logs are stored only on ephemeral disks
+
+Reasoning: Lack of review, auditability, and manual infra steps are major red flags. The others are serious but downstream symptoms.
