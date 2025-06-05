@@ -1,6 +1,4 @@
-# automation_monitoring
-
-# DevOps Automation & Monitoring Assignment
+# DevOps Automation & Monitoring
 
 This repository contains solutions to a three-part DevOps assignment focused on automation scripting, log monitoring, and Kubernetes prioritization.
 
