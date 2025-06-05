@@ -43,12 +43,3 @@ From a DevOps engineer’s perspective, the following automation and operational
 - **Documentation** is important but typically follows after automation is in place.
 
 These rankings are shaped by real-world considerations around scalability, incident response time, and developer productivity.
-
----
-
-## 🧪 Running the Scripts
-
-### Python Docker Monitor
-```bash
-pip install docker
-python monitor_containers.py
